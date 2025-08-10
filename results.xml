@@ -1,0 +1,32 @@
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="27.143699">
+<testsuite name="loginTest.spec.js" timestamp="2025-08-06T08:16:31.740Z" hostname="chromium" tests="2" failures="0" skipped="0" time="25.061" errors="0">
+<testcase name="Group Test › Add Product and Verify in Cart" classname="loginTest.spec.js" time="15.788">
+<system-out>
+<![CDATA[Login done successfully!!!
+Home page is displayed successfully!!!.
+ProductCount:  [33m9[39m
+Products are present in Home Page.
+Product is selected:  Nexus 6
+Cart page is displayed successfully!!!.
+Total Products added in Cart :  [33m1[39m
+Product Nexus 6 is successfully added in the Cart List.
+
+[[ATTACHMENT|test-results\loginTest-Group-Test-Add-Product-and-Verify-in-Cart-chromium\test-finished-1.png]]
+
+[[ATTACHMENT|test-results\loginTest-Group-Test-Add-Product-and-Verify-in-Cart-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Group Test › Logout Test" classname="loginTest.spec.js" time="9.273">
+<system-out>
+<![CDATA[Login done successfully!!!
+Logout done successfully!!!
+
+[[ATTACHMENT|test-results\loginTest-Group-Test-Logout-Test-chromium\test-finished-1.png]]
+
+[[ATTACHMENT|test-results\loginTest-Group-Test-Logout-Test-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

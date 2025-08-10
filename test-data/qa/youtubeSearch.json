@@ -1,0 +1,24 @@
+{
+    "Module1TestData":{
+        "Skill1":"Selenium Automation Tutorial",
+        "Skill2":"Cypress Automation Tutorial",
+        "Skill3":"Playwright Automation Tutorial"
+    },
+
+    "Module2TestData":{
+        "Skill1":"Java Tutorial",
+        "Skill2":"Python Tutorial",
+        "Skill3":".Net Tutorial"
+    },
+
+    "Module3TestData":{
+        "Skill1":"Data Science Tutorial",
+        "Skill2":"Machine Learning Tutorial",
+        "Skill3":"Artificial Intelligence Tutorial"
+    },
+
+    "ProductName":{
+        "NexusLaptop": "Nexus 6",
+        "LenovoLaptop": ""
+    }
+}
