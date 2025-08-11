@@ -1,0 +1,27 @@
+{
+    "Phones": {
+
+        "Samsung s6": "Samsung galaxy s6",
+        "Samsung s7": "Samsung galaxy s7",
+        "Nokia": "Nokia lumia 1520",
+        "Nexus": "Nexus 6",
+        "Iphone 6": "Iphone 6 32gb",
+        "Sony xperia": "Sony xperia z5",
+        "HTC": "HTC One M9"
+    },
+
+    "Laptop": {
+
+        "Sony i5": "Sony vaio i5",
+        "Sony i7": "Sony vaio i7",
+        "MacBook": "MacBook air",
+        "Dell": "Dell i7 8gb",
+        "MacBook Pro": "MacBook Pro"
+    },
+
+    "Monitor": {
+
+        "Apple": "Apple monitor 24",
+        "ASUS": "ASUS Full HD"
+    }
+}

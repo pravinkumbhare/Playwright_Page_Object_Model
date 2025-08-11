@@ -42,6 +42,42 @@ test.describe('Group test', () => {
 
     });
 
+
+    const searchKeywords = ['HTC One M9', 'MacBook Pro', 'Apple monitor 24'];
+    
+    for(const keyword of searchKeywords){
+    
+        test.only(`Parameterized Test ${keyword}`, async ({page}) => {
+    
+        home = new HomePage(page);
+        cart = new CartPage(page);
+
+        // Home
+        await home.gotoHomePage();
+        await home.verifyProductsAvailable();
+
+        if(keyword.match('HTC One M9')) {
+            await home.gotoPhoneCategory();
+
+        }else if(keyword.match('MacBook Pro')){
+            await home.gotoLaptopCategory();
+
+        }else{
+            await home.gotoMonitorCategory();
+
+        }
+        
+        await home.addProductToCart(keyword);    
+
+        await home.gotoCartPage();
+        const booleanValue = await cart.verifyProductAddedInCart(keyword)  
+        await expect(booleanValue).toBe(true, keyword + ` was not found in the cart`);
+
+        await page.waitForTimeout(5000)
+        })
+    
+    }
+
 });
 
 

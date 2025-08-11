@@ -19,6 +19,14 @@ export class HomePage{
         this.contactUsPageTitle = page.locator('//h5[contains(text(),"New message")]');
 
         this.aboutUsPageLink = page.locator('//*[@id="navbarExample"]/ul/li[3]/a');
+
+        // Home Page Categories
+        this.phoneCategory = page.locator('//a[contains(text(),"Phones")]')
+        this.laptopCategory = page.locator('//a[contains(text(),"Laptops")]')
+        this.monitorCategory = page.locator('//a[contains(text(),"Monitors")]')
+
+        // Phone,Laptop,Monitor Category Locators
+        this.productItems = page.locator('//div[@id="tbodyid"]//h4/a')
     }
 
     async gotoHomePage(){
@@ -100,5 +108,23 @@ export class HomePage{
         await this.logoutLink.click();
         await this.page.waitForSelector('#login2'); // wait for login link to reappear
         console.log('Logout done successfully!!!');
+    }
+
+    async gotoPhoneCategory(){
+
+        await this.phoneCategory.click()
+        console.log('Phone options are displayed successfully!!!')
+    }
+
+    async gotoLaptopCategory(){
+
+        await this.laptopCategory.click()
+        console.log('Laptop options are displayed successfully!!!')
+    }
+
+    async gotoMonitorCategory(){
+
+        await this.monitorCategory.click()
+        console.log('Monitor options are displayed successfully!!!')
     }
 }
