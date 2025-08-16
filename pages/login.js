@@ -20,7 +20,11 @@ export class LoginPage {
         await this.loginOption.click();
         await this.userNameField.fill(username);
         await this.passwordField.fill(password);
-        await this.loginButton.click();
+
+        await Promise.all([
+            await this.loginButton.click(),
+            await this.page.waitForSelector('#logout2', { state: 'visible', timeout: 10000  })
+        ])
         console.log('Login done successfully!!!')
 
     }

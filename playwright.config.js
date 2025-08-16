@@ -33,7 +33,7 @@ export default defineConfig({
   // reporter: 'html',
    reporter: [  // Multiple Reports
     ['list'], 
-    // ['html'],
+    ['html'],
     // ['json', {  outputFile: 'test-results.json' }],
     // ['junit', { outputFile: 'results.xml' }],
     ['allure-playwright'],                             // Enable Allure reporting

@@ -37,6 +37,7 @@ export class HomePage{
 
 
     async verifyProductsAvailable(){
+        await this.page.reload();
         await this.productLinks.first().waitFor({ state: 'visible', timeout: 5000 });  // wait to load the elements
 
         const productCount = await this.productLinks.count();    // return number of products present in the list
@@ -45,31 +46,34 @@ export class HomePage{
         console.log('Products are present in Home Page.')
     }
 
-    async addProductToCart(productName){
+    // async addProductToCart(productName){
 
-        // await  = this.productLinks.testContext();
-        // const allProducts = this.page.$$(this.productLinks);
-        // Use string selector directly, not a Locator
-        const allProducts = await this.page.$$('//div[@id="tbodyid"]//div/h4/a');
-        for(const productLink of allProducts){
+    //     // await  = this.productLinks.testContext();
+    //     // const allProducts = this.page.$$(this.productLinks);
+    //     // Use string selector directly, not a Locator
+    //     const allProducts = await this.page.$$('//div[@id="tbodyid"]//div/h4/a');
+    //     for(const productLink of allProducts){
 
-            if((await productLink.textContent()).includes(productName)){
-                console.log('Product is selecting now : ', await productLink.textContent())
-                await productLink.click();
-                break;
-            }
-        }
+    //         if((await productLink.textContent()).includes(productName)){
+    //             console.log('Product is selecting now : ', await productLink.textContent())
+    //             await productLink.click();
+    //             break;
+    //         }
+    //     }
 
-        // Handle alert dialog
-        await this.page.on('dialog', async dialog => {
-            if(dialog.message().includes('Product added.')) {
+    //     // Handle alert dialog
+    //     await this.page.on('dialog', async dialog => {
+    //         if(dialog.message().includes('Product added.')) {
                
-               await dialog.accept();
-            }
-        } )
-        await this.addToCartButton.click();
+    //            await dialog.accept();
+    //         }
+    //     } )
+    //     await this.addToCartButton.click();
 
-    }
+    // this.page.once('dialog', dialog => dialog.accept());
+    // await this.addToCartButton.click();
+
+    // }
 
     // Alternate method for the above addProductToCard()
     async addProductToCart(productName) {
@@ -87,13 +91,22 @@ export class HomePage{
     }
 
     // Handle alert dialog
-    this.page.once('dialog', dialog => dialog.accept());
-    await this.addToCartButton.click();
+    // Attach dialog handler before click
+    this.page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept();
+    });
+    
+    // Click and wait for the alert to appear instead of Hardcoded wait
+    await Promise.all([this.page.waitForEvent('dialog'), this.addToCartButton.click()])
+
+    // await this.page.waitForTimeout(2000);  // After adding this wait resolved inconsistent failing..
 }
 
 
     async gotoCartPage(){
         await this.cartPageLink.click();
+        await this.page.waitForLoadState('load');
         await this.placeOrderButton.isVisible();  // wait for cart page to appear
         console.log('Cart page is displayed successfully!!!.')
     }
@@ -104,9 +117,19 @@ export class HomePage{
         console.log('Contact page is displayed successfully!!!')
     }
 
+    /**
+     * Logs the user out from the application.
+     * @returns {Promise<void>} Resolves when logout is complete.
+     */
     async logout() {
+        // Refresh the page but don't wait forever for background requests
+        await this.page.reload({ waitUntil: 'domcontentloaded' });
+
+        // Optional: ensure logout link is visible before clicking
+        await this.logoutLink.waitFor({ state: 'visible' });
+
         await this.logoutLink.click();
-        await this.page.waitForSelector('#login2'); // wait for login link to reappear
+        await this.page.waitForSelector('#login2');
         console.log('Logout done successfully!!!');
     }
 

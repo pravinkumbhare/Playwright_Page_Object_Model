@@ -1,12 +1,12 @@
 {
     "Phones": {
 
-        "Samsung s6": "Samsung galaxy s6",
-        "Samsung s7": "Samsung galaxy s7",
+        "Samsung_s6": "Samsung galaxy s6",
+        "Samsung_s7": "Samsung galaxy s7",
         "Nokia": "Nokia lumia 1520",
         "Nexus": "Nexus 6",
-        "Iphone 6": "Iphone 6 32gb",
-        "Sony xperia": "Sony xperia z5",
+        "Iphone_6": "Iphone 6 32gb",
+        "Sony_xperia": "Sony xperia z5",
         "HTC": "HTC One M9"
     },
 
