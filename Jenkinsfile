@@ -12,6 +12,22 @@ pipeline {
             }
         }
 
+        stage('Check Node & NPM Versions') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'node -v'
+                        sh 'npm -v'
+                        sh 'where node || which node'
+                    } else {
+                        bat 'node -v'
+                        bat 'npm -v'
+                        bat 'where node'
+                    }
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
