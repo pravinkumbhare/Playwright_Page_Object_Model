@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs "NodeJS_20" // Replace with your Jenkins NodeJS tool name
+        nodejs "NodeJS_20" // Jenkins NodeJS tool name
     }
 
     stages {
@@ -14,20 +14,37 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                script {
+                    if (isUnix()) {
+                        sh 'npm install'
+                    } else {
+                        bat 'npm install'
+                    }
+                }
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                // Run tests with Allure results output
-                sh 'npx playwright test --reporter=line,allure-playwright'
+                script {
+                    if (isUnix()) {
+                        sh 'npx playwright test --reporter=line,allure-playwright'
+                    } else {
+                        bat 'npx playwright test --reporter=line,allure-playwright'
+                    }
+                }
             }
         }
 
         stage('Generate Allure Report') {
             steps {
-                sh 'npx allure generate ./allure-results --clean -o ./allure-report'
+                script {
+                    if (isUnix()) {
+                        sh 'npx allure generate ./allure-results --clean -o ./allure-report'
+                    } else {
+                        bat 'npx allure generate ./allure-results --clean -o ./allure-report'
+                    }
+                }
             }
         }
 
