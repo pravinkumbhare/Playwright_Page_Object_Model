@@ -26,28 +26,28 @@ test.beforeEach(async ({page}) => {
 
 test.describe('Group test', () => {
     
-    test('Add Product and Verify in Cart', async ({page}) => {
+    // test('Add Product and Verify in Cart', async ({page}) => {
 
-        home = new HomePage(page);
-        cart = new CartPage(page);
+    //     home = new HomePage(page);
+    //     cart = new CartPage(page);
 
-        // Home
-        await home.gotoHomePage();
-        await home.verifyProductsAvailable();
-        await home.addProductToCart(productName.ProductName.NexusLaptop);    // Product value fetch from JSON file
+    //     // Home
+    //     await home.gotoHomePage();
+    //     await home.verifyProductsAvailable();
+    //     await home.addProductToCart(productName.ProductName.NexusLaptop);    // Product value fetch from JSON file
         
-        await home.gotoCartPage();
-        const booleanValue = await cart.verifyProductAddedInCart(productName.ProductName.NexusLaptop)  // Product value fetch from JSON file
-        await expect(booleanValue).toBe(true, `Nexus 6 was not found in the cart`);
+    //     await home.gotoCartPage();
+    //     const booleanValue = await cart.verifyProductAddedInCart(productName.ProductName.NexusLaptop)  // Product value fetch from JSON file
+    //     await expect(booleanValue).toBe(true, `Nexus 6 was not found in the cart`);
 
-    });
+    // });
 
 
     const searchKeywords = ['HTC One M9', 'MacBook Pro', 'Apple monitor 24'];
     
     for(const keyword of searchKeywords){
     
-        test.only(`Parameterized Test ${keyword}`, async ({page}) => {
+        test(`Parameterized Test ${keyword}`, async ({page}) => {
     
         home = new HomePage(page);
         cart = new CartPage(page);
